@@ -1,51 +1,58 @@
-function HeapSort(order, array){
-  this.order = order;
-  this.array = array;
+// Heap 
+function Heap(){
   this.items = [];
 }
 
-HeapSort.prototype.swap = function(index1, index2){
+Heap.prototype.swap = function(index1, index2){
   let temp = this.items[index1];
 
   this.items[index1] = this.items[index2];
   this.items[index2] = temp;
 }
 
-HeapSort.prototype.parentIndex = function(index){
+Heap.prototype.parentIndex = function(index){
   return Math.floor((index - 1) / 2);
 }
 
-HeapSort.prototype.leftChildIndex = function(index){
+Heap.prototype.leftChildIndex = function(index){
   return (index * 2) + 1;
 }
 
-HeapSort.prototype.rightChildIndex = function(index){
+Heap.prototype.rightChildIndex = function(index){
   return (index * 2) + 2;
 }
 
-HeapSort.prototype.parent = function(index){
+Heap.prototype.parent = function(index){
   return this.items[this.parentIndex(index)];
 }
 
-HeapSort.prototype.leftChild = function(index){
+Heap.prototype.leftChild = function(index){
   return this.items[this.leftChildIndex(index)];
 }
 
-HeapSort.prototype.rightChild = function(index){
+Heap.prototype.rightChild = function(index){
   return this.items[this.rightChildIndex(index)];
 }
 
-HeapSort.prototype.push = function(item){
+Heap.prototype.push = function(item){
   this.items.push(item);
 }
 
-HeapSort.prototype.peek = function(){
+Heap.prototype.peek = function(){
   return this.items[0];
 }
 
-HeapSort.prototype.size = function(){
+Heap.prototype.size = function(){
   return this.items.length;
 }
+
+// Heap sort
+function HeapSort(order, array){
+  this.order = order;
+  this.array = array;
+}
+
+HeapSort.prototype = Object.create(Heap.prototype);
 
 HeapSort.prototype.setInput = function(){
   console.log(`unsorted array: ${this.array}`);
