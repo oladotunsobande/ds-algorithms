@@ -46,6 +46,8 @@ Heap.prototype.size = function(){
   return this.items.length;
 }
 
+// ===============================================
+
 // Heap sort
 function HeapSort(order, array){
   this.order = order;
