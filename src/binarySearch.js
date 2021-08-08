@@ -1,4 +1,8 @@
-const values = [
+const fs = require('fs');
+const appRootPath = require('app-root-path');
+
+const values = JSON.parse(fs.readFileSync(`${appRootPath.path}/data/population.json`));
+/*const values = [
   "efetobore",
   "blessing",
   "tari",
@@ -16,13 +20,12 @@ const values = [
   "science",
   "flamengo",
   "charlotte"
-];
-
-const query = "pablo";
+];*/
 
 function sortArray(arr, order){
   if(order === 'asc'){
-    arr.sort();
+    arr.sort((a,b) => { return a.value - b.value });
+    //arr.sort();
   }
   else{
     arr.sort((a, b) => {
@@ -32,7 +35,7 @@ function sortArray(arr, order){
     });
   }
 
-  console.log(arr);
+  //console.log(arr);
 
   return arr;
 }
@@ -44,21 +47,21 @@ function search(list, value){
   let stop = arr.length - 1;
   let mid = Math.floor((start + stop) / 2);
 
+  console.time('binary search');
   while(arr[mid] != value && start < stop){
-    console.log(`mid: ${mid} (${arr[mid]})`);
-
-    if(value < arr[mid]){
+    if(value < arr[mid].value){
       stop = mid - 1;
-    } else if(value > arr[mid]){
+    } else if(value > arr[mid].value){
       start = mid + 1;
     }
 
     mid = Math.floor((start + stop) / 2);
   }
 
-  let indx = (arr[mid] != value) ? -1 : mid;
+  let indx = (arr[mid].value != value) ? -1 : mid;
 
   console.log(`Search query: <${value}> - Found at index ${indx}`);
+  console.timeEnd('binary search');
 }
 
-search(values, 'pablo');
+search(values, 855334675);

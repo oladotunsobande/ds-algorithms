@@ -4,7 +4,11 @@
   "description": "JavaScript implementations of data structures and algorithms",
   "main": "app.js",
   "scripts": {
-    "test": "DEBUG=true mocha --exit ./test/ds.test.js"
+    "test": "DEBUG=true mocha --exit ./test/ds.test.js",
+    "quicksort": "node src/quickSort.js",
+    "binarysearch": "node src/binarySearch.js",
+    "linearsort": "node src/linearSort.js",
+    "streams": "node src/streams.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +19,9 @@
   "devDependencies": {
     "expect": "^26.1.0",
     "mocha": "^8.3.2"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "event-stream": "^4.0.1"
   }
 }
